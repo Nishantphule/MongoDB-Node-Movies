@@ -1,6 +1,6 @@
-const express = require('express')  //importing express
+// const express = require('express')  //importing express
+import express from 'express';
 const app = express()
-
 
 const PORT = 4000;
 
@@ -88,13 +88,20 @@ const movies = [
   ]
 
 app.get('/', function (req, res) {
-  res.send('Welcome to our App 🥂')
+  res.send('Welcome to our App 🥂🥂')
 })
 
 // movies
 app.get('/movies', (req,res) => {
     res.send(movies)
-}
-)
+})
+
+app.get('/movies/:id', (req,res) => {
+  
+    const { id } = req.params
+    const movie = movies.find((mv) => mv.id === id)
+    movie ? res.send(movie) : res.send({msg:"Movie Not Found"})
+
+})
 
 app.listen(PORT, () => console.log(`App started in ${PORT}`));

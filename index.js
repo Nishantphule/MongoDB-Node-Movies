@@ -7,7 +7,9 @@ dotenv.config();
 
 const app = express()
 
-const PORT = 4000;
+// const PORT = 4000;
+
+const PORT = process.env.PORT; // for heroku 
 
   // add middleware globally
   // app.use -> Intercepts -> applies express.json() (Inbuilt middle ware)

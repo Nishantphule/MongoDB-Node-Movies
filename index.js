@@ -13,7 +13,7 @@ const app = express()
 
 const PORT = process.env.PORT; // for heroku 
 
- app.use(cors())  // to give permission to react app
+ app.use(cors());  // to give permission to react app
 
   // add middleware globally
   // app.use -> Intercepts -> applies express.json() (Inbuilt middle ware)

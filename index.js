@@ -56,7 +56,6 @@ const movies = await client
  res.send(movies)
 })
 
-
 app.get('/movies/:id', async (req,res) => {
 
     const { id } = req.params
@@ -101,19 +100,17 @@ app.post('/movies', async (req,res) => {
   res.send(movies)
 })
 
-app.listen(PORT, () => console.log(`App started in ${PORT}`));
-
 
 // update
 
-// app.put('/movies', async (req,res) => {
-//   const data = req.body
+app.put('/movies/:id', async (req,res) => {
+  const { id } = req.params;
+  const data = req.body;
+  // db.movies.updateOne({id:id}, {$set:data})
+  const movies = await client.db("Nishant").collection("movies").updateOne({id:id}, {$set:data});
 
-//   // db.movies.insertMany
+  res.send(movies)
+})
 
-//   const movies = await client.db("Nishant").collection("movies").insertMany(data)
 
-//   res.send(movies)
-// })
-
-// app.listen(PORT, () => console.log(`App started in ${PORT}`));
+app.listen(PORT, () => console.log(`App started in ${PORT}`));

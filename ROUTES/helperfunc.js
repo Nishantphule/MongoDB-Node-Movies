@@ -5,7 +5,7 @@ export async function updateMovieById(id, data) {
     return await client.db("Nishant").collection("movies").updateOne({ _id: ObjectId(id) }, { $set: data });
 }
 export async function createMovies(data) {
-    return await client.db("Nishant").collection("movies").insertMany(data);
+    return await client.db("Nishant").collection("movies").insertOne(data);
 }
 export async function deleteMovieById(id) {
     return await client.db("Nishant").collection("movies").deleteOne({ _id: ObjectId(id) });

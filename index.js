@@ -4,6 +4,8 @@ import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv'
 import { moviesRouter } from "./ROUTES/movies.js"
 import cors from 'cors'
+import bcrypt from 'bcrypt'
+import { usersRouter } from './ROUTES/users.js';
 
 dotenv.config();
 
@@ -41,7 +43,22 @@ app.get('/', function (req, res) {
   res.send('Welcome to our App 🥂🥂')
 })
 
-
+// to get the methods for movies api
 app.use('/movies', moviesRouter)
 
+// to get the methods for user api
+app.use('/users', usersRouter)
+
 app.listen(PORT, () => console.log(`App started in ${PORT}`));
+
+
+// hashing using bcrypt
+
+// async function generateHashedPassword(password){
+
+//   const NoOfRounds = 10
+//   const salt = await bcrypt.genSalt(NoOfRounds)
+//   const hashedPassword = await bcrypt.hash(password,salt)
+//   console.log(salt,hashedPassword)
+// }
+// generateHashedPassword("password@123")

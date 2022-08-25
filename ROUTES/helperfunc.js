@@ -20,3 +20,17 @@ export async function getAllMovies(req) {
         .find(req.query) // req.query to apply filter from url -> e.g.->  ?language=english
         .toArray();
 }
+
+
+// users
+export async function getAllUsers(req) {
+    return await client
+        .db("Nishant")
+        .collection("users")
+        .find(req.query) // req.query to apply filter from url -> e.g.->  ?language=english
+        .toArray();
+}
+
+export async function createUser(data) {
+    return await client.db("Nishant").collection("users").insertOne(data);
+}

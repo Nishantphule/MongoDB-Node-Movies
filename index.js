@@ -54,6 +54,8 @@ app.get('/mobiles', async (req,res) => {
   .db("Nishant")
   .collection("mobiles")
   .find(req.query) // req.query to apply filter from url -> e.g.->  ?language=english
+      // find returns Cursor -> Pagination
+    // to convert cursor to array use  ->  "toArray()"
   .toArray();
    res.send(mobiles)
   })
@@ -61,7 +63,7 @@ app.get('/mobiles', async (req,res) => {
 app.post('/mobiles', async (req,res) => {
     const data = req.body
     const mobiles = await client.db("Nishant").collection("mobiles").insertMany(data);
-    res.send(mobiles)
+    res.status(201).send(mobiles)
   })  
 
 app.listen(PORT, () => console.log(`App started in ${PORT}`));

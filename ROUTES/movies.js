@@ -1,6 +1,8 @@
 // movies GET
 import express from 'express';
+import { auth } from '../middleware/auth.js';
 import { getAllMovies, getMovieById, deleteMovieById, createMovies, updateMovieById } from './helperfunc.js';
+
 
 const router = express.Router()
 
@@ -16,7 +18,7 @@ router.get('/', async (req,res) => {
    res.send(movies)
   })
   
-  router.get('/:id', async (req,res) => {
+  router.get('/:id',auth, async (req,res) => {
       const { id } = req.params
       console.log(req.params)
       // const movie = movies.find((mv) => mv.id === id)
@@ -26,7 +28,7 @@ router.get('/', async (req,res) => {
   
   
   // Delete movie by Id
-  router.delete('/:id', async (req,res) => {
+  router.delete('/:id',auth, async (req,res) => {
     const { id } = req.params
     // console.log(req.params)
     const result = await deleteMovieById(id)
@@ -37,7 +39,7 @@ router.get('/', async (req,res) => {
 
   // middleware - express.json() --> converts body to json
   // CREATE / POST MOVIES
-  router.post('/', async (req,res) => {
+  router.post('/',auth, async (req,res) => {
     const data = req.body
     const movies = await createMovies(data)
     res.send(movies)
@@ -46,7 +48,7 @@ router.get('/', async (req,res) => {
   
   // update
   
-  router.put('/:id', async (req,res) => {
+  router.put('/:id',auth, async (req,res) => {
     const { id } = req.params;
     const data = req.body;
     // db.movies.updateOne({id:id}, {$set:data})

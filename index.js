@@ -15,7 +15,7 @@ const app = express()
 
 const PORT = process.env.PORT; // for heroku 
 
- app.use(cors());  // to give permission to react app
+ app.use(cors());  // to give permission to react app -> in netlify to fetch db
 
   // add middleware globally
   // app.use -> Intercepts -> applies express.json() (Inbuilt middle ware)

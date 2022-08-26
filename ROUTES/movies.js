@@ -18,7 +18,7 @@ router.get('/', async (req,res) => {
    res.send(movies)
   })
   
-  router.get('/:id',auth, async (req,res) => {
+  router.get('/:id', async (req,res) => {
       const { id } = req.params
       console.log(req.params)
       // const movie = movies.find((mv) => mv.id === id)

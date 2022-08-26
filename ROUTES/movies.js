@@ -38,6 +38,7 @@ router.get('/', async (req,res) => {
   
 
   // middleware - express.json() --> converts body to json
+  
   // CREATE / POST MOVIES
   router.post('/',auth, async (req,res) => {
     const data = req.body

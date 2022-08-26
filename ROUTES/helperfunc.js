@@ -30,3 +30,4 @@ export async function getUserByName(username) {
 export async function createUser(data) {
     return await client.db("Nishant").collection("users").insertOne(data);
 }
+

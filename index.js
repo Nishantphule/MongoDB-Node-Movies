@@ -46,8 +46,23 @@ app.get('/', function (req, res) {
 // to get the methods for movies api
 app.use('/movies', moviesRouter)
 
-// to get the methods for user api
-app.use('/users', usersRouter)
+
+// mobiles
+
+app.get('/mobiles', async (req,res) => {
+  const mobiles = await client
+  .db("Nishant")
+  .collection("mobiles")
+  .find(req.query) // req.query to apply filter from url -> e.g.->  ?language=english
+  .toArray();
+   res.send(mobiles)
+  })
+
+app.post('/mobiles', async (req,res) => {
+    const data = req.body
+    const mobiles = await client.db("Nishant").collection("mobiles").insertMany(data);
+    res.send(mobiles)
+  })  
 
 app.listen(PORT, () => console.log(`App started in ${PORT}`));
 

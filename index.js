@@ -46,6 +46,7 @@ app.get('/', function (req, res) {
 // to get the methods for movies api
 app.use('/movies', moviesRouter)
 
+app.use('/users', usersRouter)
 
 // mobiles
 

@@ -23,8 +23,8 @@ export async function getAllMovies(req) {
 
 
 // users
-export async function getUserByName(username) {
-    return await client.db("Nishant").collection("users").findOne({  username: username });
+export async function getUserByName(username,password) {
+    return await client.db("Nishant").collection("users").findOne({ username: username });
 }
 
 export async function createUser(data) {

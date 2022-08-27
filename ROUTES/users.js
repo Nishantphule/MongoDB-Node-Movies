@@ -16,7 +16,6 @@ async function generateHashedPassword(password){
   // CREATE / POST USERS
   router.post('/signup', async (req,res) => {
     const { username , password } = req.body
-    
     const userFromDB = await getUserByName(username)
 
     if(userFromDB){
@@ -30,7 +29,7 @@ async function generateHashedPassword(password){
     const users = await createUser({username:username , password:hashedPassword})
     res.send(users)
     }
-  })
+  })  
 
 // login
 router.post('/login', async (req,res) => {

@@ -17,14 +17,16 @@ async function generateHashedPassword(password){
   router.post('/signup', async (req,res) => {
     const { username , password } = req.body
     const userFromDB = await getUserByName(username)
-    const storedPassword = userFromDB.password;
-    const isPasswordMatch = await bcrypt.compare(password , storedPassword)
 
-    if(userFromDB.username===username && isPasswordMatch){
-      res.status(400).send({"message":"User Already Exists"})
-    }
-    else if(userFromDB.username===username){
-      res.status(400).send({"message":"Username Already Exists"})
+    if(userFromDB){
+      const storedPassword = userFromDB.password;
+      const isPasswordMatch = await bcrypt.compare(password , storedPassword)
+      if(isPasswordMatch){
+        res.status(400).send({"message":"User Already Exists"})
+      }
+      else{
+        res.status(400).send({"message":"Username Already Exists"})
+      }
     }
     else if(password.length<8){
       res.status(400).send({"message":"Password must be atleast 8 characters"})
@@ -32,7 +34,7 @@ async function generateHashedPassword(password){
     else{
     const hashedPassword =  await generateHashedPassword(password)
     const users = await createUser({username:username , password:hashedPassword})
-    res.send(users)
+    res.send(users) 
     }
   })  
 

@@ -25,7 +25,7 @@ async function generateHashedPassword(password){
         res.status(400).send({"message":"User Already Exists"})
       }
       else{
-        res.status(400).send({"message":"Username Already Exists"})
+        res.status(400).send({"message":"Username Not Available"})
       }
     }
     else if(password.length<8){

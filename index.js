@@ -1,5 +1,5 @@
 // const express = require('express')  //importing express
-import express, { request } from 'express';
+import express from 'express';
 import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv'
 import { moviesRouter } from "./ROUTES/movies.js"

@@ -1,4 +1,3 @@
-// movies GET
 import express from 'express';
 import { createUser,getUserByName } from './helperfunc.js';
 import bcrypt from 'bcrypt'
@@ -41,7 +40,7 @@ async function generateHashedPassword(password){
 // login
 router.post('/login', async (req,res) => {
   const { username , password } = req.body
-  
+
   const userFromDB = await getUserByName(username) 
 
   if(!userFromDB){
@@ -53,11 +52,12 @@ router.post('/login', async (req,res) => {
     if(isPasswordMatch){
       const token = jwt.sign({id: userFromDB._id}, process.env.SECRET_KEY)
       res.send({"message":"Successful Login", token:token})
+      res.cookie(token)
     }
     else
     {
       res.send({"message":"Invalid Credentials"})
-    }
+    } 
   }
 })
 

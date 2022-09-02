@@ -52,7 +52,6 @@ router.post('/login', async (req,res) => {
     if(isPasswordMatch){
       const token = jwt.sign({id: userFromDB._id}, process.env.SECRET_KEY)
       res.send({"message":"Successful Login", token:token})
-      res.cookie(token)
     }
     else
     {

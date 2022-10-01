@@ -33,7 +33,7 @@ async function generateHashedPassword(password){
     else{
     const hashedPassword =  await generateHashedPassword(password)
     const users = await createUser({username:username , password:hashedPassword, email:email})
-    res.send(users) 
+    res.send({"message":"Successful Signup",users:users}) 
     }
   })  
 

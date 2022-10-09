@@ -51,7 +51,7 @@ router.post('/login', async (req,res) => {
     const isPasswordMatch = await bcrypt.compare(password , storedPassword)
     if(isPasswordMatch){
       const token = jwt.sign({id: userFromDB._id}, process.env.SECRET_KEY)
-      sessionStorage.setItem("x-auth-token",`${token}`)
+      sessionStorage.setItem("x-auth-token",token)
       res.send({"message":"Successful Login", token:token})
     }
     else

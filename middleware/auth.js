@@ -2,8 +2,7 @@
  
  export const auth = (req,res,next) => {
     try {
-      const token = sessionStorage.getItem("x-auth-token")
-      // const token = req.header("x-auth-token")
+      const token = req.header("x-auth-token")
 
      jwt.verify(token,process.env.SECRET_KEY) 
     next();

@@ -12,6 +12,7 @@ async function generateHashedPassword(password){
   return hashedPassword;
 }
 
+
   // CREATE / POST USERS
   router.post('/signup', async (req,res) => {
     const { username , password, email } = req.body
@@ -37,6 +38,7 @@ async function generateHashedPassword(password){
     }
   })  
 
+  
 // login
 router.post('/login', async (req,res) => {
   const { username , password } = req.body
@@ -51,7 +53,7 @@ router.post('/login', async (req,res) => {
     const isPasswordMatch = await bcrypt.compare(password , storedPassword)
     if(isPasswordMatch){
       const token = jwt.sign({id: userFromDB._id}, process.env.SECRET_KEY)
-      sessionStorage.setItem("x-auth-token",token)
+      res.header({"x-auth-token":token})
       res.send({"message":"Successful Login", token:token})
     }
     else
@@ -60,6 +62,7 @@ router.post('/login', async (req,res) => {
     } 
   }
 })
+
 
 //   api methods export
   export const usersRouter = router
